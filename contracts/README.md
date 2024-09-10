@@ -1,13 +1,13 @@
-# Sample Hardhat Project
+# NFT Smart contracts
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+This project contains basic CollectionFactory and Collection contracts.
 
-Try running some of the following tasks:
+Before running tests provide variables to the .env as shown in the example.env.
+
+Useful commands:
 
 ```shell
-npx hardhat help
+npx hardhat compile
 npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
+npx hardhat ignition deploy ./ignition/modules/CollectionFactory.ts
 ```
