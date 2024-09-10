@@ -1,0 +1,21 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx prettier --write --plugin=prettier-plugin-solidity 'contracts/**/*.sol'",
+    "test": "npx hardhat test"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.10",
+    "hardhat-abi-exporter": "^2.10.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-solidity": "^1.4.1"
+  }
+}
