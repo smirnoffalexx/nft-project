@@ -48,8 +48,12 @@ func run() error {
 	go subscribeToEvents(client)
 
 	router := gin.New()
-	router.GET("/events", getEvents)
-	router.GET("/collections", getCollections)
+	router.GET("/events", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{"events": EVENTS})
+	})
+	router.GET("/collections", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{"collections": COLLECTIONS})
+	})
 
 	if err := router.Run(":8080"); err != nil {
 		return err
@@ -133,12 +137,4 @@ func processTxLog(vLog types.Log) error {
 	logrus.Info("New event: ", outputMap)
 
 	return nil
-}
-
-func getEvents(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"events": EVENTS})
-}
-
-func getCollections(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"collections": COLLECTIONS})
 }
