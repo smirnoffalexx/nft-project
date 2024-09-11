@@ -13,7 +13,7 @@ interface Event {
 }
 
 function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const EventsDisplay: React.FC = () => {
@@ -21,17 +21,17 @@ const EventsDisplay: React.FC = () => {
 
   useEffect(() => {
     async function fetchEvents() {
-        try {
-          const response = await axios.get("http://localhost:8080/events");
+      try {
+        const response = await axios.get("http://localhost:8080/events");
 
-          setEvents(response.data.events);
-        } catch (error) {
-          console.error("Error fetching events", error);
-        }
+        setEvents(response.data.events);
+      } catch (error) {
+        console.error("Error fetching events", error);
+      }
 
-        await sleep(5000);
-        fetchEvents();
-      };
+      await sleep(5000);
+      fetchEvents();
+    }
     fetchEvents();
   }, [events]);
 
