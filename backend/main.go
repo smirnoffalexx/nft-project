@@ -48,6 +48,7 @@ func run() error {
 	go subscribeToEvents(client)
 
 	router := gin.New()
+	router.Use(CORSMiddleware())
 	router.GET("/events", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{"events": EVENTS})
 	})
@@ -62,8 +63,20 @@ func run() error {
 	return nil
 }
 
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Credentials", "true")
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT")
+
+		c.Next()
+	}
+}
+
 func loadABI() error {
-	b, err := os.ReadFile("../contracts/abi/CollectionFactory.json")
+	b, err := os.ReadFile("./abi/CollectionFactory.json")
 	if err != nil {
 		return err
 	}
