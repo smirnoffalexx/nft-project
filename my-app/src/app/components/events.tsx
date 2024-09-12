@@ -12,28 +12,27 @@ interface Event {
   tokenUri: string | undefined;
 }
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 const EventsDisplay: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
+  const [count, setCount] = useState<number>(0);
 
-  useEffect(() => {
+  useEffect(() => {  
     async function fetchEvents() {
       try {
         const response = await axios.get("http://localhost:8080/events");
-
+  
         setEvents(response.data.events);
       } catch (error) {
-        console.error("Error fetching events", error);
+        console.error("Error while fetching events", error);
       }
+    };
 
-      await sleep(5000);
+    setTimeout(() => {
       fetchEvents();
-    }
-    fetchEvents();
-  }, [events]);
+      setCount(count + 1);
+    }, 5000);
+
+  }, [events, count]);
 
   return (
     <div>
