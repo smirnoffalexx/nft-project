@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      platforms:
+        - linux/amd64
+    ports:
+      - "8080:8080"
+    env_file: .env.backend
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      platforms:
+        - linux/amd64
+    ports:
+      - "3000:3000"
+    env_file: .env.frontend
+  
