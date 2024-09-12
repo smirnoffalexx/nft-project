@@ -2,12 +2,10 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import factoryABI from "../abi/CollectionFactory.json";
-import * as dotenv from "dotenv";
+import nextConfig from "../../../next.config.mjs";
 
-dotenv.config();
-
-const factoryAddress = "0x2D290455b532a9E805b1ba1e8b9DCE3cf06E29e7"; // process.env.FACTORY_ADDRESS!;
-
+const factoryAddress = nextConfig.env.FACTORY_ADDRESS!; // "0x2D290455b532a9E805b1ba1e8b9DCE3cf06E29e7"
+console.log(factoryAddress);
 const MetaMaskConnector: React.FC = () => {
   const [account, setAccount] = useState<string | null>(null);
   const [balance, setBalance] = useState<string | null>(null);
